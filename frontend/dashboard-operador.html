@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Dashboard Operador</title>
+
+<style>
+
+/* estilo geral da página */
+body{
+    margin:0;
+    font-family:Arial;
+    background:#0f0f0f;
+    color:white;
+}
+
+/* cabeçalho */
+.header{
+    background:#b30000;
+    padding:20px;
+    font-size:22px;
+    font-weight:bold;
+}
+
+/* área dos cards */
+.container{
+    padding:20px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+/* card das informações */
+.card{
+    background:#1c1c1c;
+    padding:20px;
+    border-radius:10px;
+}
+
+/* valor principal */
+.big{
+    font-size:28px;
+    font-weight:bold;
+}
+
+/* área dos botões */
+.buttons{
+    margin:20px;
+}
+
+/* estilo dos botões */
+button{
+    padding:10px;
+    margin-right:10px;
+    border:none;
+    cursor:pointer;
+    border-radius:6px;
+}
+
+/* botão excel */
+.excel{background:green;color:white;}
+
+/* botão pdf */
+.pdf{background:red;color:white;}
+
+</style>
+</head>
+
+<body>
+
+<!-- título do dashboard -->
+<div class="header">
+Dashboard Operador - TSEA
+</div>
+
+<!-- botões para exportar relatórios -->
+<div class="buttons">
+<button class="excel" onclick="excel()">Baixar Excel</button>
+<button class="pdf" onclick="pdf()">Baixar PDF</button>
+</div>
+
+<!-- cards com os dados -->
+<div class="container">
+
+<div class="card">
+Temperatura
+<div class="big" id="temp">--</div>
+</div>
+
+<div class="card">
+Vibração
+<div class="big" id="vib">--</div>
+</div>
+
+<div class="card">
+Corrente
+<div class="big" id="corr">--</div>
+</div>
+
+</div>
+
+<script>
+
+/* carrega os dados da api */
+async function carregar(){
+
+    const res = await fetch("http://localhost:5229/api/leituras");
+    const data = await res.json();
+
+    /* pega a última leitura */
+    const last = data[data.length - 1];
+
+    /* atualiza os valores na tela */
+    document.getElementById("temp").innerText = last.temperatura;
+    document.getElementById("vib").innerText = last.vibracao;
+    document.getElementById("corr").innerText = last.corrente;
+}
+
+/* baixa arquivo excel */
+function excel(){
+    window.open("http://localhost:5229/api/leituras/export/excel");
+}
+
+/* baixa arquivo pdf */
+function pdf(){
+    window.open("http://localhost:5229/api/leituras/export/pdf");
+}
+
+/* atualiza os dados a cada 3 segundos */
+setInterval(carregar, 3000);
+
+/* carrega os dados ao abrir a página */
+carregar();
+
+</script>
+
+</body>
+</html>

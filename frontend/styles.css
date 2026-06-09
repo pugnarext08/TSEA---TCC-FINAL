@@ -1,0 +1,108 @@
+/* reset geral */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* fundo escuro com gradiente */
+body {
+    background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+    color: white;
+}
+
+/* cabeçalho */
+.header {
+    display: flex;
+    align-items: center;
+    padding: 20px 40px;
+    background: #b30000;
+    gap: 15px;
+}
+
+/* tamanho da logo */
+.logo-img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+
+/* nome da empresa */
+.logo-text {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+/* subtítulo */
+.subtitulo {
+    margin-left: 20px;
+    font-weight: 300;
+}
+
+/* centraliza o conteúdo */
+.container {
+    height: calc(100vh - 90px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* caixa de login */
+.login-box {
+    width: 380px;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+}
+
+/* título */
+.login-box h2 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+/* área dos inputs */
+.input-box {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+/* campo de texto */
+.input-box input {
+    width: 100%;
+    padding: 12px 40px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+}
+
+/* ícone do input */
+.input-box i {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: gray;
+}
+
+/* botão */
+.btn {
+    width: 100%;
+    padding: 12px;
+    background: #b30000;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* efeito ao passar o mouse */
+.btn:hover {
+    background: #ff0000;
+}
